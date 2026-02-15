@@ -1,0 +1,17 @@
+[Unit]
+Description=JupyterLab for LLM Switchboard
+After=network-online.target tailscaled.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/home/root/work
+Environment=JUPYTER_PORT=8888
+ExecStart=/opt/jupyter-venv/bin/jupyter lab --ip 127.0.0.1 --port 8888 --no-browser --ServerApp.token=${JUPYTER_TOKEN}
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
