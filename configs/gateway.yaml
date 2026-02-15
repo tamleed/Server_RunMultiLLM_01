@@ -1,0 +1,15 @@
+host: 127.0.0.1
+port: 8000
+redis_url: redis://127.0.0.1:6379/0
+default_queue: default
+
+timeouts:
+  switch_timeout_sec: 120
+  inference_timeout_sec: 1800
+  backend_ready_timeout_sec: 240
+
+policies:
+  default_async: true
+  sync_allowed_only_if_queue_empty_and_model_active: true
+  when_switching: wait
+  wait_timeout_sec: 300
